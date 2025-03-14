@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Numero</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding-top: 50px;
+            color: blue;
+        }
+        .input-container {
+            margin-top: 20px;
+        }
+        input {
+            padding: 20px;
+            font-size: 24px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        .message {
+            margin-top: 20px;
+            font-size: 20px;
+            color: green;
+        }
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Numero ( 1- 10)</h1>
+    <div class="input-container">
+        <input type="number" id="userGuess" min="1" max="10" placeholder="-" />
+        <button onclick="adivinarNumero()">play</button>
+    </div>
+    <p id="message" class="message"></p>
+
+    <script>
+        // Generar un número aleatorio entre 1 y 10
+        const numeroSecreto = Math.floor(Math.random() * 10) + 1;
+        
+        function adivinarNumero() {
+            const guess = document.getElementById('userGuess').value;
+            const message = document.getElementById('message');
+            
+            if (guess < 1 || guess > 10) {
+                message.textContent = "ingresa un número entre 1 y 10.";
+                message.classList.add('error');
+                return;
+            }
+
+            if (guess == numeroSecreto) {
+                message.textContent = "Bien, Has adivinado el número.";
+                message.classList.remove('error');
+                message.classList.add('message');
+            } else {
+                message.textContent = "Intenta de nuevo.";
+                message.classList.remove('message');
+                message.classList.add('error');
+            }
+        }
+    </script>
+</body>
+</html>
